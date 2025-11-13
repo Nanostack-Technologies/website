@@ -87,7 +87,7 @@ export default function Hero() {
             <motion.img
               src="images/logo.jpg"
               alt="NanoStack Technologies"
-              className="relative w-[550px] md:w-[590px] rounded-xl shadow-lg shadow-blue-500/10"
+              className="relative w-[90%] max-w-[480px] mx-auto rounded-xl shadow-lg shadow-blue-500/10"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{
                 opacity: 1,

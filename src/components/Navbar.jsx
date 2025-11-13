@@ -38,10 +38,10 @@ export default function Navbar() {
           onClick={() => navigate("/")}
           className="flex items-center space-x-2 cursor-pointer"
         >
-          <img src="images/logo.jpg" alt="logo" className="w-10 h-10 rounded" />
-          <span className="text-lg md:text-xl font-semibold text-blue-400">
+          <img src="images/logo-hor.png" alt="logo" className="bg-gray-200 h-20 rounded" />
+          {/* <span className="text-lg md:text-xl font-semibold text-blue-400">
             NanoStack Technologies
-          </span>
+          </span> */}
         </div>
 
         {/* Desktop Menu */}
