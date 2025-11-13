@@ -14,13 +14,17 @@ export default function Home() {
       <Navbar />
 
       {/* Smooth Scroll Target Sections */}
-      <section id="home"><Hero /></section>
-      <section id="statistics"><State /></section>
-      <section id="why"><Why /></section>
-      <section id="expertise"><Expertise /></section>
-      <section id="projects"><Projects /></section>
-      <section id="testimonials"><Testimonial /></section>
-      <section id="contact"><Contact /></section>
+      <section id="home" className="pt-[50px] md:pt-[50px] scroll-mt-[50px] md:scroll-mt-[50px]">
+        <Hero />
+      </section>
+
+      <section id="statistics" className="scroll-mt-[110px] md:scroll-mt-[120px]"><State /></section>
+      <section id="why" className="scroll-mt-[110px] md:scroll-mt-[120px]"><Why /></section>
+      <section id="expertise" className="scroll-mt-[110px] md:scroll-mt-[120px]"><Expertise /></section>
+      <section id="projects" className="scroll-mt-[110px] md:scroll-mt-[120px]"><Projects /></section>
+      <section id="testimonials" className="scroll-mt-[110px] md:scroll-mt-[120px]"><Testimonial /></section>
+      <section id="contact" className="scroll-mt-[110px] md:scroll-mt-[120px]"><Contact /></section>
+
 
       <Footer />
     </div>
