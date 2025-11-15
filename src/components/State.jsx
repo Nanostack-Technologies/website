@@ -9,10 +9,10 @@ export default function State() {
   });
 
   const stats = [
-    { value: 150, suffix: "+", label: "Projects Completed" },
+    { value: 15, suffix: "+", label: "Projects Completed" },
     { value: 98, suffix: "%", label: "Client Satisfaction" },
-    { value: 50, suffix: "+", label: "Team Members" },
-    { value: 12, suffix: "+", label: "Years Experience" },
+    { value: 10, suffix: "+", label: "Team Members" },
+    { value: 2, suffix: "+", label: "Years Experience" },
   ];
 
   return (
