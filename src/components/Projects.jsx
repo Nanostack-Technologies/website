@@ -60,6 +60,13 @@ export default function Projects() {
       desc: "Elegant and user-friendly website for a luxury hotel.",
       link: "https://hotel-demo-nanostack.netlify.app/",
     },
+        {
+      category: "Web Development",
+      color: "from-[#3a1506] to-[#2a0e04]",
+      title: "Real Estate Landing Page",
+      desc: "A captivating landing page for a real estate company to attract potential buyers.",
+      link: "https://real-estate-demo-nanostack.netlify.app/",
+    },
   ];
   
   // Extract categories dynamically
