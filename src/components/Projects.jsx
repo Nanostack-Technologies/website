@@ -7,23 +7,23 @@ export default function Projects() {
     {
       category: "Web Development",
       color: "from-[#052b3d] to-[#003344]",
-      title: "E-commerce Platform",
-      desc: "Full-featured e-commerce solution with payment integration and inventory management.",
-      link: "https://example.com/ecommerce",
+      title: "Gym Website",
+      desc: "Full-featured Gym solution.",
+      link: "https://gym-demo-nanostack.netlify.app/",
+    },
+    {
+      category: "Web Development",
+      color: "from-[#2b0f38] to-[#1b0d25]",
+      title: "Restaurant Website",
+      desc: "Deliciously designed website for a modern restaurant.",
+      link: "https://restaurant-demo-nanostack.netlify.app/",
     },
     {
       category: "Automation",
-      color: "from-[#2b0f38] to-[#1b0d25]",
-      title: "Business Automation Suite",
-      desc: "Enterprise automation platform reducing manual processes by 80% for Fortune 500 client.",
-      link: "https://example.com/automation",
-    },
-    {
-      category: "Data & Analytics",
       color: "from-[#003920] to-[#002c19]",
-      title: "Real-time Analytics Dashboard",
-      desc: "Interactive dashboard providing real-time insights with predictive analytics capabilities.",
-      link: "https://example.com/analytics",
+      title: "Whatsapp Automation Tool",
+      desc: "Automate WhatsApp messages and streamline communication for businesses.",
+      link: "https://whatsapp-automation-script.vercel.app/",
     },
     {
       category: "Mobile Development",
@@ -46,17 +46,31 @@ export default function Projects() {
       desc: "Seamless migration of legacy systems to modern cloud infrastructure with zero downtime.",
       link: "https://example.com/cloud",
     },
+    {
+      category: "Web Development",
+      color: "from-[#052b3d] to-[#003344]",
+      title: "Portfolio Website",
+      desc: "A sleek and modern portfolio website to showcase personal projects and skills.",
+      link: "https://pavan-portfolio-delta.vercel.app/",
+    },
+    {
+      category: "Web Development",
+      color: "from-[#2b0f38] to-[#1b0d25]",
+      title: "Hotel Website",
+      desc: "Elegant and user-friendly website for a luxury hotel.",
+      link: "https://hotel-demo-nanostack.netlify.app/",
+    },
   ];
-
+  
   // Extract categories dynamically
   const categories = ["All", ...new Set(projects.map((p) => p.category))];
-
+  
   const [selectedCategory, setSelectedCategory] = useState("All");
-
+  
   const filteredProjects =
-    selectedCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === selectedCategory);
+  selectedCategory === "All"
+  ? projects
+  : projects.filter((p) => p.category === selectedCategory);
 
   return (
     <section className="bg-black text-white py-20 px-6">
