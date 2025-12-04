@@ -1,0 +1,62 @@
+# NanoStack Technologies - Robots.txt
+# Optimized for SEO and Search Engine Crawling
+
+# Allow all major search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Block access to development/testing files
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /*.json$
+Disallow: /vite.config.js
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /.git/
+Disallow: /*.md$
+
+# Allow CSS and JS files to be crawled (Important for Google)
+Allow: /*.css$
+Allow: /*.js$
+
+# Allow images to be crawled
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.ico$
+
+# Specific Rules for Google Bot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Googlebot Image
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /src/
+
+# Specific Rules for Bing Bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Specific Rules for Yahoo Bot
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots and scrapers
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Crawl-delay: 5
+
+User-agent: SemrushBot
+Crawl-delay: 5
+
+# Sitemap location (CRITICAL for SEO)
+Sitemap: https://nanostacktechnologies.com/sitemap.xml

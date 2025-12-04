@@ -1,23 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml"
->
-
-  <!-- Home Page -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Homepage - Highest Priority -->
   <url>
     <loc>https://nanostacktechnologies.com/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <priority>1.00</priority>
+    <lastmod>2025-12-04</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://nanostacktechnologies.com/og-image.png</image:loc>
+      <image:title>NanoStack Technologies - Web Development &amp; Automation Experts</image:title>
+      <image:caption>Transform your business with modern Web Development and Automation solutions</image:caption>
+    </image:image>
   </url>
-
+  
   <!-- Open Source Page -->
   <url>
     <loc>https://nanostacktechnologies.com/open-source</loc>
-    <lastmod>2025-01-01</lastmod>
-    <priority>0.80</priority>
+    <lastmod>2025-12-04</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Homepage Sections (Important for SEO) -->
+  <url>
+    <loc>https://nanostacktechnologies.com/#hero</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://nanostacktechnologies.com/#expertise</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://nanostacktechnologies.com/#projects</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://nanostacktechnologies.com/#testimonials</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://nanostacktechnologies.com/#contact</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
 </urlset>
