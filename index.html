@@ -59,15 +59,88 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": "LocalBusiness",
         "name": "NanoStack Technologies",
         "url": "https://nanostacktechnologies.com",
         "logo": "https://nanostacktechnologies.com/favicon.png",
+        "description": "Professional Web Development, Automation Solutions, and AI Integration Services",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Rajkot",
+          "addressRegion": "Gujarat",
+          "addressCountry": "IN"
+        },
+        "telephone": "+919979412610",
+        "email": "contact@nanostacktechnologies.com",
+        "priceRange": "$$",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "5"
+        },
         "sameAs": [
           "https://www.linkedin.com/company/nanostack-technologies",
           "https://github.com/Pavan261105",
           "https://instagram.com/nanostacktechnologies",
           "https://wa.me/919979412610"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Web Development Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Web Development",
+                "description": "Custom website and web application development"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Business Automation",
+                "description": "Process automation and workflow optimization"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "AI Integration",
+                "description": "Artificial Intelligence and machine learning solutions"
+              }
+            }
+          ]
+        }
+      }
+    </script>
+
+    <!-- Breadcrumb Schema for navigation -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nanostacktechnologies.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://nanostacktechnologies.com/#expertise"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Testimonials",
+            "item": "https://nanostacktechnologies.com/#testimonials"
+          }
         ]
       }
     </script>
