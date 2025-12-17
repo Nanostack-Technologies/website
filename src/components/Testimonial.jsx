@@ -1,6 +1,6 @@
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
-import { Star } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Testimonial() {
   const testimonials = [
@@ -46,19 +46,36 @@ export default function Testimonial() {
     },
   ];
 
-  const infiniteList = [...testimonials, ...testimonials, ...testimonials];
-  const controls = useAnimation();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [direction, setDirection] = useState(1);
 
+  // Auto-scroll effect
   useEffect(() => {
-    controls.start({
-      x: ["0%", "-100%"],
-      transition: {
-        repeat: Infinity,
-        duration: 28,
-        ease: "linear",
-      },
-    });
-  }, [controls]);
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [isPaused, testimonials.length]);
+
+  const handlePrevious = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const goToSlide = (index) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+  };
 
   // Generate JSON-LD structured data for SEO
   const testimonialSchema = {
@@ -121,57 +138,83 @@ export default function Testimonial() {
           </p>
         </div>
 
-        {/* Infinite Slider - Mobile Optimized */}
-        <div className="relative w-full overflow-hidden">
-          <motion.div
-            animate={controls}
-            className="flex gap-4 md:gap-6 lg:gap-8 whitespace-nowrap"
-            drag="x"
-            dragConstraints={{ left: -100, right: 100 }}
-            dragElastic={0.1}
-            onHoverStart={() => controls.stop()}
-            onHoverEnd={() =>
-              controls.start({
-                x: ["0%", "-100%"],
-                transition: {
-                  repeat: Infinity,
-                  duration: 28,
-                  ease: "linear",
-                },
-              })
-            }
-            style={{ touchAction: "pan-y" }}
-            aria-live="polite"
+        {/* Carousel Container */}
+        <div
+          className="relative max-w-6xl mx-auto"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Navigation Arrows - Desktop */}
+          <button
+            onClick={handlePrevious}
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 lg:-translate-x-16 z-10 
+            bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 
+            text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            aria-label="Previous testimonial"
           >
-            {infiniteList.map((t, index) => (
-              <article
-                key={index}
-                className="min-w-[280px] max-w-[280px] sm:min-w-[320px] sm:max-w-[320px] md:min-w-[360px] md:max-w-[360px] lg:min-w-[380px] lg:max-w-[380px]
-                bg-gradient-to-b from-gray-900 to-black border border-gray-800 
-                p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-blue-600/20 
-                transition-all duration-300 whitespace-normal break-words
-                flex-shrink-0"
+            <ChevronLeft size={24} />
+          </button>
+
+          <button
+            onClick={handleNext}
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 lg:translate-x-16 z-10 
+            bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 
+            text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Testimonial Cards with Animation */}
+          <div className="relative h-[400px] md:h-[380px] lg:h-[360px] flex items-center justify-center overflow-hidden">
+            <AnimatePresence mode="wait" initial={false} custom={direction}>
+              <motion.article
+                key={currentIndex}
+                custom={direction}
+                initial={{
+                  opacity: 0,
+                  x: direction > 0 ? 300 : -300,
+                  scale: 0.8
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                  scale: 1
+                }}
+                exit={{
+                  opacity: 0,
+                  x: direction > 0 ? -300 : 300,
+                  scale: 0.8
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeInOut"
+                }}
+                className="absolute w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px]
+                bg-gradient-to-br from-gray-900 via-gray-800 to-black border-2 border-gray-700 
+                p-6 md:p-8 lg:p-10 rounded-2xl shadow-2xl hover:shadow-blue-600/30 
+                transition-shadow duration-300"
                 itemScope
                 itemType="https://schema.org/Review"
-                aria-label={`Review by ${t.name}`}
+                aria-label={`Review by ${testimonials[currentIndex].name}`}
               >
                 {/* Star Rating */}
                 <div
-                  className="flex text-cyan-400 mb-4 gap-1"
+                  className="flex justify-center text-cyan-400 mb-6 gap-1"
                   role="img"
-                  aria-label={`${t.rating} out of 5 stars`}
+                  aria-label={`${testimonials[currentIndex].rating} out of 5 stars`}
                   itemProp="reviewRating"
                   itemScope
                   itemType="https://schema.org/Rating"
                 >
-                  <meta itemProp="ratingValue" content={t.rating.toString()} />
+                  <meta itemProp="ratingValue" content={testimonials[currentIndex].rating.toString()} />
                   <meta itemProp="bestRating" content="5" />
                   <meta itemProp="worstRating" content="1" />
                   {[1, 2, 3, 4, 5].map((s) => (
                     <Star
                       key={s}
-                      size={18}
-                      className="md:w-5 md:h-5"
+                      size={20}
+                      className="md:w-6 md:h-6"
                       fill="#22d3ee"
                       stroke="none"
                     />
@@ -180,41 +223,81 @@ export default function Testimonial() {
 
                 {/* Review Text */}
                 <p
-                  className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 whitespace-normal break-words"
+                  className="text-gray-300 text-base md:text-lg leading-relaxed mb-6 text-center min-h-[120px] md:min-h-[100px]"
                   itemProp="reviewBody"
                 >
-                  {t.review}
+                  "{testimonials[currentIndex].review}"
                 </p>
 
                 {/* Divider */}
-                <div className="w-full h-[1px] bg-gray-700 my-4"></div>
+                <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto my-6"></div>
 
                 {/* Author Info */}
                 <div
+                  className="text-center"
                   itemProp="author"
                   itemScope
                   itemType="https://schema.org/Person"
                 >
                   <p
-                    className="font-semibold text-white text-base md:text-lg"
+                    className="font-bold text-white text-lg md:text-xl mb-1"
                     itemProp="name"
                   >
-                    {t.name}
+                    {testimonials[currentIndex].name}
                   </p>
-                  <p className="text-gray-400 text-xs md:text-sm">
-                    <span itemProp="jobTitle">{t.role}</span>
+                  <p className="text-gray-400 text-sm md:text-base">
+                    <span itemProp="jobTitle">{testimonials[currentIndex].role}</span>
                   </p>
-                  <meta itemProp="worksFor" content={t.company} />
+                  <meta itemProp="worksFor" content={testimonials[currentIndex].company} />
                 </div>
-              </article>
+              </motion.article>
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation Dots */}
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`transition-all duration-300 rounded-full ${index === currentIndex
+                    ? 'w-8 h-3 bg-gradient-to-r from-blue-500 to-cyan-400'
+                    : 'w-3 h-3 bg-gray-600 hover:bg-gray-500'
+                  }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+                aria-current={index === currentIndex ? 'true' : 'false'}
+              />
             ))}
-          </motion.div>
+          </div>
+
+          {/* Mobile Navigation Buttons */}
+          <div className="flex md:hidden justify-center gap-4 mt-6">
+            <button
+              onClick={handlePrevious}
+              className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 
+              text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center gap-2"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={20} />
+              <span className="text-sm font-medium">Previous</span>
+            </button>
+
+            <button
+              onClick={handleNext}
+              className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 
+              text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center gap-2"
+              aria-label="Next testimonial"
+            >
+              <span className="text-sm font-medium">Next</span>
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Swipe Hint */}
-        <div className="text-center mt-8 md:hidden">
+        {/* Auto-scroll indicator */}
+        <div className="text-center mt-8">
           <p className="text-gray-500 text-sm">
-            ← Swipe to see more reviews →
+            {isPaused ? '⏸ Paused' : '▶ Auto-scrolling'} • {currentIndex + 1} of {testimonials.length}
           </p>
         </div>
       </section>
